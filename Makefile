@@ -10,9 +10,15 @@ all: ant.dll mstsc_hole.exe
 ant.dll: ant.c
 	$(CC) $(CFLAGS) -shared -o $@ $^ $(LIBS)
 
-mstsc_hole.exe: gogo.c
+mstsc_hole.exe: gogo.c gicon.res
 	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
 
+gicon.res: gicon.rc
+	windres -i $^ --input-format=rc -o $@ -O coff
+
+gicon.rc: p48.ico
+
+
 clean:
-	rm -f *.exe *.dll
+	rm -f *.exe *.dll *.res
 
