@@ -11,7 +11,7 @@ ant.dll: ant.c
 	$(CC) $(CFLAGS) -shared -o $@ $^ $(LIBS)
 
 mstsc_hole.exe: gogo.c gicon.res
-	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LIBS) -Wl,--subsystem,windows
 
 gicon.res: gicon.rc
 	windres -i $^ --input-format=rc -o $@ -O coff
